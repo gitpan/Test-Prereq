@@ -1,4 +1,4 @@
-# $Id: get_from_file.t,v 1.4 2002/10/11 00:34:51 comdog Exp $
+# $Id: get_from_file.t,v 1.5 2002/10/11 09:30:40 comdog Exp $
 
 use Test::More tests => 2;
 
@@ -21,7 +21,7 @@ $modules = Test::Prereq->_get_from_file( 'lib/Prereq.pm' );
 print STDERR "Did not find right modules for lib/Prereq.pm!\n" .
 	 "Found <@modules>\n" unless
 		ok(
-			eq_array( $modules, [ 
+			eq_array( \@modules, [ 
 			qw( File::Find::Rule Module::CoreList 
 				Module::Info Test::Builder ) ] ),
 			'Right modules for t/Prereq.pm'
