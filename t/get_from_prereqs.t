@@ -1,7 +1,5 @@
-# $Id: get_from_prereqs.t,v 1.1 2002/10/09 22:38:49 comdog Exp $
+# $Id: get_from_prereqs.t,v 1.2 2005/03/08 05:14:25 comdog Exp $
 use strict;
-
-use Test::More tests => 1;
 
 use Test::Prereq;
 

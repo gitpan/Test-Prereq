@@ -1,6 +1,6 @@
-# $Id: load.t,v 1.3 2004/02/20 10:27:38 comdog Exp $
+# $Id: load.t,v 1.4 2005/03/08 05:14:25 comdog Exp $
 BEGIN {
-	@classes = qw(Test::Prereq);
+	@classes = qw(Test::Prereq Test::Prereq::Build);
 	}
 
 use Test::More tests => scalar @classes;

@@ -1,8 +1,4 @@
-# $Id: prereq_ok.t,v 1.4 2004/02/20 10:27:38 comdog Exp $
-local $^W = 0;
+# $Id: prereq_ok.t,v 1.5 2005/03/08 05:14:25 comdog Exp $
 
-use Test::More;
-eval "use Test::Prereq";
-plan skip_all => "Test::Prereq required to test dependencies" if $@;
-
+use Test::Prereq;
 prereq_ok( undef, undef, [ qw(CPANPLUS::Internals::System) ] );
