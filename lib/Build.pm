@@ -1,9 +1,9 @@
-# $Id: Build.pm,v 1.3 2002/10/04 23:29:05 comdog Exp $
+# $Id: Build.pm,v 1.4 2002/10/08 07:07:51 comdog Exp $
 package Test::Prereq::Build;
 use strict;
 
 use base qw(Test::Prereq);
-use vars qw($VERSION);
+use vars qw($VERSION @EXPORT);
 
 =head1 NAME
 
@@ -17,6 +17,7 @@ Test::Prereq::ModuleBuild - test prerequisites in Module::Bulid scripts
 =cut
 
 $VERSION = '0.03';
+@EXPORT = qw( prereq_ok );
 
 use Module::Build;
 
@@ -42,6 +43,8 @@ Copyright 2002 brian d foy, All rights reserved
 You can use this software under the same terms as Perl itself.
 
 =cut
+
+sub prereq_ok { __PACKAGE__->_prereq_check( @_ ) }
 
 sub _master_file { 'Build.PL' }
 
