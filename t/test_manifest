@@ -1,4 +1,6 @@
+# $Id: test_manifest,v 1.5 2005/03/04 13:08:26 comdog Exp $
 load.t
 pod.t
+pod_coverage.t
 import.t
 get_from_file.t

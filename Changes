@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.13 2004/09/08 00:53:23 comdog Exp $
+# $Id: Changes,v 1.14 2004/09/08 06:00:43 comdog Exp $
+
+1.025 - Wed Sep  8 00:59:57 2004
+* get rid of the 'redefine' warning when we read the Makefile.PL
 
 1.024 - Tue Sep  7 19:52:30 2004
 * cleaned up distro
