@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.8 2002/09/06 07:19:21 comdog Exp $
+# $Id: Makefile.PL,v 1.2 2002/09/22 21:19:35 comdog Exp $
 use ExtUtils::MakeMaker;
 
 my $tests = do {
@@ -9,7 +9,7 @@ my $tests = do {
 WriteMakefile
         (
         'NAME'      => 'Test::Prereq',
-        'VERSION'   => '0.05',
+        'VERSION'   => '0.06',
  		'PREREQ_PM' => {
  			'File::Find::Rule'      => 0,
  			'Module::Info'          => 0,
