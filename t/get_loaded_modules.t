@@ -1,4 +1,4 @@
-# $Id: get_loaded_modules.t,v 1.3 2002/10/04 23:22:59 comdog Exp $
+# $Id: get_loaded_modules.t,v 1.4 2002/10/09 22:38:49 comdog Exp $
 
 use Test::More tests => 4;
 
@@ -8,6 +8,7 @@ use Test::Prereq;
 my $modules = Test::Prereq->_get_loaded_modules( 'blib/lib', 't' );
 my $keys = [ sort keys %$modules ];
 
+print "Didn't find right modules! Found < @$keys >\n" unless
 ok(
   eq_array( $keys, 
 		[ 

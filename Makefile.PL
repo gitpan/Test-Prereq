@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.6 2002/10/09 10:42:03 comdog Exp $
+# $Id: Makefile.PL,v 1.7 2002/10/09 22:38:49 comdog Exp $
 use ExtUtils::MakeMaker;
 
 my $tests = do {
@@ -31,3 +31,4 @@ WriteMakefile
 		clean  => { FILES => 'Test-Prereq-*' },
 		);
 
+1;
