@@ -1,4 +1,4 @@
-# $Id: get_loaded_modules.t,v 1.5 2002/10/10 22:18:35 comdog Exp $
+# $Id: get_loaded_modules.t,v 1.6 2002/10/11 00:34:51 comdog Exp $
 
 use Test::More tests => 4;
 
@@ -6,7 +6,8 @@ use Test::Prereq;
 
 {
 my $modules = Test::Prereq->_get_loaded_modules( 'blib/lib', 't' );
-my $keys = [ sort keys %$modules ];
+
+my $keys = [ grep ! /^CPANPLUS/, sort keys %$modules ];
 
 print STDERR "Didn't find right modules! Found < @$keys >\n" unless
 ok(

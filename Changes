@@ -1,5 +1,8 @@
-# $Id: Changes,v 1.5 2002/10/10 22:19:37 comdog Exp $
+# $Id: Changes,v 1.6 2002/10/11 00:34:51 comdog Exp $
 
+0.15 Thu Oct 10 19:34:20 CDT 2002
+	- more changes to get around CPANPLUS
+	
 0.14 Thu Oct 10 17:19:27 CDT 2002
 	- test suite gives better error output (so i can
 	figure out what's up with CPANPLUS)

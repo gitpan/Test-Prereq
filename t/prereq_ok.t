@@ -1,7 +1,7 @@
-# $Id: prereq_ok.t,v 1.1 2002/09/12 10:11:07 comdog Exp $
+# $Id: prereq_ok.t,v 1.2 2002/10/11 00:34:51 comdog Exp $
 
 use Test::More tests => 1;
 
 use Test::Prereq;
 
-prereq_ok();
+prereq_ok( undef, undef, [ qw(CPANPLUS::Internals::System) ] );
