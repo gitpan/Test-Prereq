@@ -1,4 +1,4 @@
-# $Id: get_prereqs.t,v 1.4 2002/10/04 23:29:05 comdog Exp $
+# $Id: get_prereqs.t,v 1.5 2002/10/10 22:18:35 comdog Exp $
 use strict;
 
 use Test::More tests => 4;
@@ -10,10 +10,11 @@ use Test::Prereq::Build;
 use lib qw(.);
 
 my $modules = Test::Prereq->_get_prereqs();
+print STDERR "Didn't find right modules!\nFound <@$modules>\n" unless
 ok( eq_array( $modules, 
 		[ 
 		qw( File::Find::Rule Module::Build Module::CoreList Module::Info 
-		Test::Builder Test::Builder::Tester Test::More Test::Pod ) 
+		Test::Builder Test::Builder::Tester Test::Manifest Test::More Test::Pod ) 
 		] ),
 	'Right modules for Makefile.PL'
 	);
