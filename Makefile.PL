@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.9 2002/10/11 09:30:40 comdog Exp $
+# $Id: Makefile.PL,v 1.10 2002/11/05 01:22:57 comdog Exp $
 use ExtUtils::MakeMaker;
 
 sub ExtUtils::MM_Any::test_via_harness
@@ -36,7 +36,6 @@ WriteMakefile
         	'lib/Build.pm' => '$(INST_MAN3DIR)/Test::Prereq::Build.3',
         	},
 
-		depend => { Makefile => 't/test_manifest' },
 		clean  => { FILES => 'Test-Prereq-*' },
 		);
 

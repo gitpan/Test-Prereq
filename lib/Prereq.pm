@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.15 2002/10/23 16:45:42 comdog Exp $
+#$Id: Prereq.pm,v 1.17 2002/11/05 01:26:58 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -60,7 +60,7 @@ does not use (or require) any modules.  You may get a message like
 
 Also, if a file cannot compile, Module::Info dumps a lot of text
 to the terminal.  You probably want to bail out of testing if the
-files do not compile anyway. 
+files do not compile, though. 
 
 =head2 Problem with CPANPLUS
 
@@ -69,7 +69,8 @@ still young and not part of the Standard Library,
 Test::Prereq's tests do not do the right thing under it (for
 some reason).  Test::Prereq cheats by ignoring CPANPLUS
 completely in the tests---at least until someone has a
-better solution.
+better solution.  If you do not like that, you can set
+$EXCLUDE_CPANPLUS to a false value.
 
 You should be able to do a 'make test' manually to make everything
 work, though.
@@ -77,9 +78,10 @@ work, though.
 =cut
 
 use base qw(Exporter);
-use vars qw($VERSION @EXPORT @prereqs);
+use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
-$VERSION = '0.17';
+
+$VERSION = '0.18';
 @EXPORT = qw( prereq_ok );
 
 use Carp qw(carp);
@@ -94,6 +96,8 @@ use Test::Builder;
 my $Test = Test::Builder->new;
 	
 my $Namespace = '';
+
+$EXCLUDE_CPANPLUS = 1;
 
 sub ExtUtils::MakeMaker::WriteMakefile
 	{
@@ -216,6 +220,15 @@ sub _prereq_check
 		
 		foreach my $module ( @$skip )
 			{
+			delete $loaded->{$module};
+			}
+		}
+	
+	if( $EXCLUDE_CPANPLUS )
+		{
+		foreach my $module ( keys %$loaded )
+			{
+			next unless $module =~ m/^CPANPLUS::/;
 			delete $loaded->{$module};
 			}
 		}

@@ -1,5 +1,9 @@
-# $Id: Changes,v 1.8 2002/10/23 16:56:30 comdog Exp $
+# $Id: Changes,v 1.9 2002/11/05 01:26:22 comdog Exp $
 
+0.18 Mon Nov  4 19:25:56 CST 2002
+	- skip CPANPLUS modules by default.  still haven't
+	figured this out. 
+	
 0.17 Wed Oct 23 11:55:28 CDT 2002
 	- removed extra call to CPAN.pm.  this should make 
 	things run faster.
