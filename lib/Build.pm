@@ -1,4 +1,4 @@
-# $Id: Build.pm,v 1.4 2002/10/08 07:07:51 comdog Exp $
+# $Id: Build.pm,v 1.6 2002/12/20 22:15:52 comdog Exp $
 package Test::Prereq::Build;
 use strict;
 
@@ -16,14 +16,14 @@ Test::Prereq::ModuleBuild - test prerequisites in Module::Bulid scripts
 
 =cut
 
-$VERSION = '0.03';
+$VERSION = '0.04';
 @EXPORT = qw( prereq_ok );
 
 use Module::Build;
 
 =head1 METHODS
 
-THiS IS ALPHA SOFTWARE! 
+THiS IS ALPHA SOFTWARE!
 
 If you have problems, send me your Build.PL.
 
@@ -52,16 +52,16 @@ sub _master_file { 'Build.PL' }
 sub Module::Build::new
 	{
 	my $class = shift;
-	
+
 	my %hash = @_;
-	
+
 	my @requires = sort grep $_ ne 'perl', (
-		keys %{ $hash{requires} }, 
+		keys %{ $hash{requires} },
 		keys %{ $hash{build_requires} },
 		);
 
 	@Test::Prereq::prereqs = @requires;
-	
+
 	# intercept further calls to this object
 	return bless {}, __PACKAGE__;
 	}
