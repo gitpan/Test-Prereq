@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.24 2004/09/08 00:46:18 comdog Exp $
+#$Id: Prereq.pm,v 1.25 2004/09/08 05:53:59 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -86,7 +86,7 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.24 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.25 $ =~ /(\d+)\.(\d+)/;
 
 @EXPORT = qw( prereq_ok );
 
@@ -284,7 +284,7 @@ sub _get_prereqs
 	delete $INC{$file};  # make sure we load it again
 
 	{
-	no warnings;
+	local $^W = 0;
 	
 	unless( do "./$file" )
 		{
