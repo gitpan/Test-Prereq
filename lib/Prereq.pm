@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.19 2002/12/20 22:15:52 comdog Exp $
+#$Id: Prereq.pm,v 1.21 2004/02/20 10:27:38 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -9,14 +9,18 @@ Test::Prereq - check if Makefile.PL has the right pre-requisites
 =head1 SYNOPSIS
 
 	# if you use Makefile.PL
-	use Test::Prereq;
+	use Test::More;
+	eval "use Test::Prereq";
+	plan skip_all => "Test::Prereq required to test dependencies" if $@;
 	prereq_ok();
 
 	# specify a perl version, test name, or module names to skip
 	prereq_ok( $version, $name, \@skip );
 
 	# if you use Module::Build
-	use Test::Prereq::Build;
+	use Test::More;
+	eval "use Test::Prereq::Build";
+	plan skip_all => "Test::Prereq::Build required to test dependencies" if $@;
 	prereq_ok();
 
 	# or from the command line for a one-off check
@@ -26,29 +30,27 @@ Test::Prereq - check if Makefile.PL has the right pre-requisites
 
 THIS IS ALPHA SOFTWARE.  IT HAS SOME PROBLEMS.
 
-The prereq_ok() function examines the modules it finds in
-blib/lib/ and the test files it finds in t/ (and test.pl).
-It figures out which modules they use, skips the modules
-that are in the Perl core, and compares the remaining list
-of modules to those in the PREREQ_PM section of Makefile.PL.
- If you use Module::Build instead, see
-L<Test::Prereq::Build> instead.
+The prereq_ok() function examines the modules it finds in blib/lib/,
+blib/script, and the test files it finds in t/ (and test.pl). It
+figures out which modules they use, skips the modules that are in the
+Perl core, and compares the remaining list of modules to those in the
+PREREQ_PM section of Makefile.PL.
+
+If you use Module::Build instead, see L<Test::Prereq::Build> instead.
 
 =head2 Modules Test::Prereq can't find
 
-Module::Info only tells Test::Prereq which modules you used,
-not which distribution they came in.  This can be a problem
-for things in packages like libnet, libwww, Tk, and so on.
-At the moment Test::Prereq asks CPAN.pm to expand anything
-in PREREQ_PM to see if one of the distributions you
-explicity list contains the module you actually used.  This
-might fail in some cases.  Please send me anything that does
-not do what you think it should.
+Module::Info only tells Test::Prereq which modules you used, not which
+distribution they came in.  This can be a problem for things in
+packages like libnet, libwww, Tk, and so on. At the moment
+Test::Prereq asks CPAN.pm to expand anything in PREREQ_PM to see if
+one of the distributions you explicity list contains the module you
+actually used.  This might fail in some cases.  Please send me
+anything that does not do what you think it should.
 
-Test::Prereq only asks CPAN.pm for help if it needs it,
-since CPAN.pm can be slow if it has to fetch things from the
-network. Once it fetches the right things, it should be much
-faster.
+Test::Prereq only asks CPAN.pm for help if it needs it, since CPAN.pm
+can be slow if it has to fetch things from the network. Once it
+fetches the right things, it should be much faster.
 
 =head2 Problem with Module::Info
 
@@ -64,16 +66,21 @@ files do not compile, though.
 
 =head2 Problem with CPANPLUS
 
-CPANPLUS apparently does some wierd things, and since it is
-still young and not part of the Standard Library,
-Test::Prereq's tests do not do the right thing under it (for
-some reason).  Test::Prereq cheats by ignoring CPANPLUS
-completely in the tests---at least until someone has a
-better solution.  If you do not like that, you can set
+CPANPLUS apparently does some wierd things, and since it is still
+young and not part of the Standard Library, Test::Prereq's tests do
+not do the right thing under it (for some reason).  Test::Prereq
+cheats by ignoring CPANPLUS completely in the tests---at least until
+someone has a better solution.  If you do not like that, you can set
 $EXCLUDE_CPANPLUS to a false value.
 
 You should be able to do a 'make test' manually to make everything
 work, though.
+
+=head2 Warning about redefining ExtUtils::MakeMaker::WriteMakefile
+
+Test::Prereq has its own version of ExtUtils::MakeMaker::WriteMakefile
+so it can run the Makefile.PL and get the argument list of that
+function.  You may see warnings about this.
 
 =cut
 
@@ -81,14 +88,14 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = '0.19';
+$VERSION = '0.23';
 @EXPORT = qw( prereq_ok );
 
 use Carp qw(carp);
 use CPAN;
 use Exporter;
 use ExtUtils::MakeMaker;
-use File::Find::Rule;
+use File::Find;
 use Module::CoreList;
 use Module::Info;
 use Test::Builder;
@@ -99,7 +106,10 @@ my $Namespace = '';
 
 $EXCLUDE_CPANPLUS = 1;
 
-sub ExtUtils::MakeMaker::WriteMakefile
+{
+no warnings;
+
+* ExtUtils::MakeMaker::WriteMakefile = sub
 	{
 	my %hash = @_;
 
@@ -109,6 +119,7 @@ sub ExtUtils::MakeMaker::WriteMakefile
 	$Namespace = $name;
 	@Test::Prereq::prereqs   = sort keys %$hash;
 	}
+}
 
 =head1 FUNCTIONS
 
@@ -118,19 +129,28 @@ sub ExtUtils::MakeMaker::WriteMakefile
 
 If you don't specify a version, prereq_ok assumes you want
 to compare the list of prerequisite modules to version
-5.6.1.
+5.008001.
 
-Valid version come from Module::CoreList (which uses $[):
+Valid versions come from Module::CoreList (which uses $[).
 
-        5.008
-        5.00307
-        5.00405
-        5.00503
-        5.007003
-        5.004
-        5.005
-        5.006
-        5.006001
+	#!/usr/bin/perl
+	use Module::CoreList;
+	print map "$_\n", sort keys %Module::CoreList::version;
+
+
+	5.00307
+	5.004
+	5.00405
+	5.005
+	5.00503
+	5.006
+	5.006001
+	5.006002
+	5.007003
+	5.008
+	5.008001
+	5.008002
+	5.009
 
 prereq_ok attempts to remove modules found in blib and
 libraries found in t from the reported prerequisites.
@@ -141,11 +161,12 @@ this if your tests do funny things with require.
 
 =cut
 
-my $default_version = '5.006001';
-my $version         = '5.006001';
+my $default_version = '5.008001';
+my $version         = '5.008001';
 
 sub prereq_ok
 	{
+	$Test->plan( tests => 1 );
 	__PACKAGE__->_prereq_check( @_ );
 	}
 
@@ -166,20 +187,20 @@ sub _prereq_check
 		return;
 		}
 
+	# get the declared prereqs from the Makefile.PL
 	my $prereqs = $class->_get_prereqs();
 	unless( $prereqs )
 		{
-		$Test->ok( 0, $name );
-		$Test->diag( "\t" .
+		$class->_not_ok( "\t" .
 			$class->_master_file . " did not return a true value.\n" );
 		return 0;
 		}
-
-	my $loaded = $class->_get_loaded_modules( 'blib/lib', 't' );
+	
+	my $loaded  = $class->_get_loaded_modules();
+	
 	unless( $loaded )
 		{
-		$Test->ok( 0, $name );
-		$Test->diag( "\tCouldn't look up the modules for some reasons.\n",
+		$class->_not_ok( "\tCouldn't look up the modules for some reasons.\n" ,
 			"\tDo the blib/lib and t directories exist?\n",
 			);
 		return 0;
@@ -235,18 +256,25 @@ sub _prereq_check
 
 	if( keys %$loaded ) # stuff left in %loaded, oops!
 		{
-		$Test->ok( 0, $name );
-		$Test->diag( "Found some modules that didn't show up in PREREQ_PM\n",
+		$class->_not_ok( "Found some modules that didn't show up in PREREQ_PM\n",
 			map { "\t$_\n" } sort keys %$loaded );
 		}
 	else
 		{
 		$Test->ok( 1, $name );
 		}
-
+	
 	return 1;
 	}
 
+sub _not_ok
+	{
+	my( $self, $name, @message ) = @_;
+
+	$Test->ok( 0, $name );
+	$Test->diag( join "", @message );
+	}
+	
 sub _master_file { 'Makefile.PL' }
 
 sub _get_prereqs
@@ -256,13 +284,17 @@ sub _get_prereqs
 
 	delete $INC{$file};  # make sure we load it again
 
+	{
+	no warnings;
+	
 	unless( do "./$file" )
 		{
 		print STDERR "_get_prereqs: Error loading $file: $!";
 		return;
 		}
 	delete $INC{$file};  # pretend we were never here
-
+	}
+	
 	my @modules = sort @Test::Prereq::prereqs;
 	@Test::Prereq::prereqs = ();
 	return \@modules;
@@ -279,9 +311,13 @@ sub _get_from_prereqs
 	foreach my $module ( @$modules )
 		{
 		my $mod      = CPAN::Shell->expand( "Module", $module );
+		next unless ref $mod;
+
 		my $distfile = $mod->cpan_file;
 		my $dist     = CPAN::Shell->expand( "Distribution", $distfile );
+
 		my @found    = $dist->containsmods;
+
 		push @dist_modules, @found;
 		}
 
@@ -293,15 +329,20 @@ sub _get_loaded_modules
 	{
 	my $class = shift;
 
-	return unless( defined $_[0] and defined $_[1] );
-	return unless( -d $_[0] and -d $_[1] );
+#	return unless( defined $_[0] and defined $_[1] );
+#	return unless( -d $_[0] and -d $_[1] );
 
-	my @files = File::Find::Rule->file()->name( '*.pm' )->in( $_[0] );
-
-	push @files, File::Find::Rule->file()->name( '*.t' )->in( $_[1] );
-
+	my( @libs, @t, @scripts );
+	
+	find( sub { push @libs,    $File::Find::name if m/\.pm$/ }, 'blib/lib' )
+		if -e 'blib/lib';
+	find( sub { push @t,       $File::Find::name if m/\.t$/  }, 't' )
+		if -e 't';
+	find( sub { push @scripts, $File::Find::name if -f $_    }, 'blib/script' )
+		if -e 'blib/script';
+	
 	my @found = ();
-	foreach my $file ( @files )
+	foreach my $file ( @libs, @t, @scripts )
 		{
 		push @found, @{ $class->_get_from_file( $file ) };
 		}
@@ -315,6 +356,10 @@ sub _get_test_libraries
 
 	my $dirsep = "/";
 
+	my @found = ();
+	
+	find( sub { push @found, $File::Find::name if m/\.p(l|m)$/ }, 't' );
+
 	my @files =
 		map {
 			my $x = $_;
@@ -322,7 +367,7 @@ sub _get_test_libraries
 			$x =~ s|$dirsep|::|g;
 			$x;
 			}
-			File::Find::Rule->file()->name( '*.pl' )->in( 't' );
+			@found;
 
 	push @files, 'test.pl' if -e 'test.pl';
 
@@ -337,6 +382,10 @@ sub _get_dist_modules
 
 	my $dirsep = "/";
 
+	my @found = ();
+	
+	find( sub { push @found, $File::Find::name if m/\.pm$/ }, $_[0] );
+		
 	my @files =
 		map {
 			my $x = $_;
@@ -345,22 +394,18 @@ sub _get_dist_modules
 			$x =~ s|$dirsep|::|g;
 			$x;
 			}
-			File::Find::Rule->file()->name( '*.pm' )->in( $_[0] );
-
-	#print STDERR "Found in blib @files\n";
+			@found;
 
 	return \@files;
 	}
 
 sub _get_from_file
 	{
-	my $class = shift;
+	my( $class, $file ) = @_;
 
-	my $file = shift;
+	my $module  = Module::Info->new_from_file( $file );
 
-	my $module = Module::Info->new_from_file( $file );
-
-	my @used = $module->modules_used;
+	my @used    = $module->modules_used;
 
 	my @modules =
 		sort
@@ -378,7 +423,9 @@ sub _get_from_file
 
 * set up a couple fake module distributions to test
 
-* scan script directory too?
+* warn about things that show up in PREREQ_PM unnecessarily
+
+* get rid of File::Finder::Rule
 
 =head1 SOURCE AVAILABILITY
 

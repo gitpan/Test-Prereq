@@ -1,11 +1,11 @@
-# $Id: get_loaded_modules.t,v 1.6 2002/10/11 00:34:51 comdog Exp $
+# $Id: get_loaded_modules.t,v 1.8 2004/02/20 10:27:38 comdog Exp $
 
 use Test::More tests => 4;
 
 use Test::Prereq;
 
 {
-my $modules = Test::Prereq->_get_loaded_modules( 'blib/lib', 't' );
+my $modules = Test::Prereq->_get_loaded_modules();
 
 my $keys = [ grep ! /^CPANPLUS/, sort keys %$modules ];
 
@@ -13,14 +13,16 @@ print STDERR "Didn't find right modules! Found < @$keys >\n" unless
 ok(
   eq_array( $keys, 
 		[ 
-		qw( File::Find::Rule Module::Build Module::CoreList Module::Info 
-		Test::Builder Test::More Test::Pod Test::Prereq Test::Prereq::Build) 
+		qw( Module::Build Module::CoreList Module::Info 
+			Test::Prereq Test::Prereq::Build) 
 		] ),
 	'Right modules for modules and tests'
 	);
 }
 
-{
+TODO: {
+local $TODO = "This interface changed, so these tests are not valid";
+
 my $modules = Test::Prereq->_get_loaded_modules( );
 my $okay = defined $modules ? 0 : 1;
 ok( $okay, '_get_loaded_modules catches no arguments' );

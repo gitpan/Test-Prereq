@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.9 2002/11/05 01:26:22 comdog Exp $
+# $Id: Changes,v 1.10 2002/12/20 22:18:59 comdog Exp $
+
+0.19 - Fri Dec 20 16:18:39 2002
+	* stripped bad whitespace from Pod, no code changes
 
 0.18 Mon Nov  4 19:25:56 CST 2002
 	- skip CPANPLUS modules by default.  still haven't
