@@ -1,4 +1,4 @@
-# $Id: Build.pm,v 1.6 2002/12/20 22:15:52 comdog Exp $
+# $Id: Build.pm,v 1.8 2004/09/08 00:46:18 comdog Exp $
 package Test::Prereq::Build;
 use strict;
 
@@ -16,14 +16,13 @@ Test::Prereq::ModuleBuild - test prerequisites in Module::Bulid scripts
 
 =cut
 
-$VERSION = '0.04';
+$VERSION = sprintf "%d.%03d", q$Revision: 1.8 $ =~ /(\d+)\.(\d+)/;
+
 @EXPORT = qw( prereq_ok );
 
 use Module::Build;
 
 =head1 METHODS
-
-THiS IS ALPHA SOFTWARE!
 
 If you have problems, send me your Build.PL.
 
@@ -34,7 +33,7 @@ This module does not have any public methods.  See L<Test::Prereq>.
 
 =head1 AUTHOR
 
-brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 

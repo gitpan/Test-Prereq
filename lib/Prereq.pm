@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.21 2004/02/20 10:27:38 comdog Exp $
+#$Id: Prereq.pm,v 1.24 2004/09/08 00:46:18 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -27,8 +27,6 @@ Test::Prereq - check if Makefile.PL has the right pre-requisites
 	perl -MTest::More=tests,1 -MTest::Prereq -eprereq_ok
 
 =head1 DESCRIPTION
-
-THIS IS ALPHA SOFTWARE.  IT HAS SOME PROBLEMS.
 
 The prereq_ok() function examines the modules it finds in blib/lib/,
 blib/script, and the test files it finds in t/ (and test.pl). It
@@ -88,7 +86,8 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = '0.23';
+$VERSION = sprintf "%d.%03d", q$Revision: 1.24 $ =~ /(\d+)\.(\d+)/;
+
 @EXPORT = qw( prereq_ok );
 
 use Carp qw(carp);
@@ -432,7 +431,7 @@ sub _get_from_file
 This source is part of a SourceForge project which always has the
 latest sources in CVS, as well as all of the previous releases.
 
-	https://sourceforge.net/projects/brian-d-foy/
+	http://sourceforge.net/projects/brian-d-foy/
 
 If, for some reason, I disappear from the world, one of the other
 members of the project can shepherd this module appropriately.
@@ -445,7 +444,7 @@ Andy Lester, Slavin Rezic, Randal Schwartz, Iain Truskett
 
 =head1 AUTHOR
 
-brian d foy, E<lt>bdfoy@cpan.orgE<gt>
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 

@@ -1,4 +1,10 @@
-# $Id: Changes,v 1.10 2002/12/20 22:18:59 comdog Exp $
+# $Id: Changes,v 1.12 2004/08/25 00:59:17 comdog Exp $
+
+0.23 - Tue Aug 24 19:58:53 2004
+* Changed a few things for demo talk
+
+0.23 - Fri Feb 20 05:42:18 2004
+	* got rid of the File::Find::Rule dependency
 
 0.19 - Fri Dec 20 16:18:39 2002
 	* stripped bad whitespace from Pod, no code changes
