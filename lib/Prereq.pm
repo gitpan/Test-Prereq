@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.2 2002/09/22 21:19:35 comdog Exp $
+#$Id: Prereq.pm,v 1.3 2002/09/30 07:55:48 comdog Exp $
 package Test::Prereq;
 use strict;
 
