@@ -1,4 +1,4 @@
-# $Id: Build.pm,v 1.9 2005/03/08 05:14:25 comdog Exp $
+# $Id: Build.pm,v 1.10 2005/07/13 22:28:37 comdog Exp $
 package Test::Prereq::Build;
 use strict;
 
@@ -7,7 +7,7 @@ use vars qw($VERSION @EXPORT);
 
 =head1 NAME
 
-Test::Prereq::ModuleBuild - test prerequisites in Module::Bulid scripts
+Test::Prereq::Build - test prerequisites in Module::Build scripts
 
 =head1 SYNOPSIS
 
@@ -16,7 +16,7 @@ Test::Prereq::ModuleBuild - test prerequisites in Module::Bulid scripts
 
 =cut
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.9 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.10 $ =~ /(\d+)\.(\d+)/;
 
 use Module::Build;
 use Test::Builder;

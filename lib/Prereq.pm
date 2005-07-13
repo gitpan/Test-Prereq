@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.27 2005/03/08 05:14:25 comdog Exp $
+#$Id: Prereq.pm,v 1.28 2005/07/13 22:28:37 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -9,6 +9,7 @@ Test::Prereq - check if Makefile.PL has the right pre-requisites
 =head1 SYNOPSIS
 
 	# if you use Makefile.PL
+	use Test::More;
 	eval "use Test::Prereq";
 	plan skip_all => "Test::Prereq required to test dependencies" if $@;
 	prereq_ok();
@@ -17,6 +18,7 @@ Test::Prereq - check if Makefile.PL has the right pre-requisites
 	prereq_ok( $version, $name, \@skip );
 
 	# if you use Module::Build
+	use Test::More;
 	eval "use Test::Prereq::Build";
 	plan skip_all => "Test::Prereq::Build required to test dependencies" if $@;
 	prereq_ok();
@@ -84,7 +86,7 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.27 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.28 $ =~ /(\d+)\.(\d+)/;
 
 @EXPORT = qw( prereq_ok );
 
