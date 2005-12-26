@@ -1,7 +1,8 @@
-# $Id: get_from_prereqs.t,v 1.2 2005/03/08 05:14:25 comdog Exp $
+# $Id: get_from_prereqs.t,v 1.3 2005/12/26 04:02:35 comdog Exp $
 use strict;
 
 use Test::Prereq;
+use Test::More tests => 1;
 
 use lib qw(.);
 

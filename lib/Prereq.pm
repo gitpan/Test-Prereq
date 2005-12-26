@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.28 2005/07/13 22:28:37 comdog Exp $
+#$Id: Prereq.pm,v 1.29 2005/12/26 04:02:35 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -86,7 +86,7 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.28 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.29 $ =~ /(\d+)\.(\d+)/;
 
 @EXPORT = qw( prereq_ok );
 
@@ -460,7 +460,7 @@ members of the project can shepherd this module appropriately.
 
 Many thanks to:
 
-Andy Lester, Slavin Rezic, Randal Schwartz, Iain Truskett
+Andy Lester, Slavin Rezic, Randal Schwartz, Iain Truskett, Dylan Martin
 
 =head1 AUTHOR
 
