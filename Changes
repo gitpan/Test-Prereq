@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.18 2005/12/26 04:02:35 comdog Exp $
+# $Id: Changes,v 1.19 2005/12/26 04:04:40 comdog Exp $
+
+1.29 - Sun Dec 25 20:03:47 2005
+	* Updated some tests that had some problems. No need to upgrade.
 
 1.028 - Wed Jul 13 17:31:13 2005
 	* Simple doc fixes. No need to upgrade.

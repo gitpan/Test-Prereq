@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.29 2005/12/26 04:02:35 comdog Exp $
+#$Id: Prereq.pm,v 1.30 2006/01/11 06:09:53 comdog Exp $
 package Test::Prereq;
 use strict;
 
@@ -86,7 +86,7 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.29 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.30 $ =~ /(\d+)\.(\d+)/;
 
 @EXPORT = qw( prereq_ok );
 
@@ -117,6 +117,8 @@ no warnings;
 
 	$Namespace = $name;
 	@Test::Prereq::prereqs   = sort keys %$hash;
+	
+	1;
 	}
 }
 
@@ -310,7 +312,7 @@ sub _get_prereqs
 	
 	unless( do "./$file" )
 		{
-		print STDERR "_get_prereqs: Error loading $file: $!";
+		print STDERR "_get_prereqs: Error loading $file: $@\n";
 		return;
 		}
 	delete $INC{$file};  # pretend we were never here
