@@ -1,4 +1,16 @@
-# $Id: Changes,v 1.19 2005/12/26 04:04:40 comdog Exp $
+# $Id: Changes,v 1.22 2006/05/18 05:23:39 comdog Exp $
+
+1.31 - Wed May 17 22:23:23 2006
+	* updates to distro and kwalitee. No need to upgrade
+
+1.30 - Wed May 17 22:15:01 2006
+	* Updates to distro and kwalitee. No need to upgrade.
+
+1.30 - Wed Jan 11 00:11:21 2006
+	* Tests should now work even if there is nothing in PREREQ_PM. In the
+	previous version, an empty PREREQ_PM made the module think Makefile.PL
+	didn't exit cleanly. 
+	* Everyone should upgrade.
 
 1.29 - Sun Dec 25 20:03:47 2005
 	* Updated some tests that had some problems. No need to upgrade.
