@@ -1,4 +1,4 @@
-# $Id: Build.pm,v 1.10 2005/07/13 22:28:37 comdog Exp $
+# $Id: Build.pm,v 1.11 2007/01/10 04:53:14 comdog Exp $
 package Test::Prereq::Build;
 use strict;
 
@@ -16,7 +16,7 @@ Test::Prereq::Build - test prerequisites in Module::Build scripts
 
 =cut
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.10 $ =~ /(\d+)\.(\d+)/;
+$VERSION = sprintf "%d.%03d", q$Revision: 1.11 $ =~ /(\d+)\.(\d+)/;
 
 use Module::Build;
 use Test::Builder;
@@ -36,13 +36,15 @@ This module does not have any public methods.  See L<Test::Prereq>.
 
 brian d foy, C<< <bdfoy@cpan.org> >>
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
-Copyright 2002-2005 brian d foy, All rights reserved
+Copyright (c) 2002-2007 brian d foy.  All rights reserved.
 
-You can use this software under the same terms as Perl itself.
+This program is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
+
 
 sub import 
 	{

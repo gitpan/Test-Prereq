@@ -1,16 +1,17 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Test-Prereq
-version:      1.031
-version_from: lib/Prereq.pm
-installdirs:  site
-requires:
+--- #YAML:1.0
+name:                Test-Prereq
+version:             1.032
+abstract:            ~
+license:             perl
+generated_by:        ExtUtils::MakeMaker version 6.31
+distribution_type:   module
+requires:     
     Module::Build:                 0
     Module::CoreList:              0
     Module::Info:                  0
     Test::Builder:                 0
     Test::Builder::Tester:         0
     Test::More:                    0
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
