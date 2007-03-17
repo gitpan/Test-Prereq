@@ -1,4 +1,4 @@
-# $Id: Build.pm,v 1.11 2007/01/10 04:53:14 comdog Exp $
+# $Id: Build.pm 2209 2007-03-17 05:47:05Z comdog $
 package Test::Prereq::Build;
 use strict;
 
@@ -16,7 +16,8 @@ Test::Prereq::Build - test prerequisites in Module::Build scripts
 
 =cut
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.11 $ =~ /(\d+)\.(\d+)/;
+$VERSION = 1.012;
+#sprintf "%d.%03d", q$Revision: 2209 $ =~ /(\d+)\.(\d+)/;
 
 use Module::Build;
 use Test::Builder;

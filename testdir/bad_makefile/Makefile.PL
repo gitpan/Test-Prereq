@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2002/09/12 10:11:07 comdog Exp $
+# $Id: Makefile.PL 344 2002-09-12 10:11:07Z comdog $
 use ExtUtils::MakeMaker;
 
 WriteMakefile

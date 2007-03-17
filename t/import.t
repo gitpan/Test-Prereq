@@ -1,4 +1,4 @@
-# $Id: import.t,v 1.1 2002/10/08 07:23:23 comdog Exp $
+# $Id: import.t 430 2002-10-08 07:23:23Z comdog $
 use strict;
 
 use Test::More tests => 4;

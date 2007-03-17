@@ -1,4 +1,4 @@
-# $Id: get_from_file.t,v 1.7 2004/02/20 10:27:38 comdog Exp $
+# $Id: get_from_file.t 1154 2004-02-20 10:27:38Z comdog $
 
 use Test::More tests => 2;
 

@@ -1,4 +1,4 @@
-# $Id: Build.PL,v 1.1 2002/10/04 23:22:59 comdog Exp $
+# $Id: Build.PL 419 2002-10-04 23:22:59Z comdog $
 # stolen from Module::Build
 
 use lib qw(lib);  # Use Module::Build to test & install itself

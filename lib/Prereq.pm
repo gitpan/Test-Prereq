@@ -1,4 +1,4 @@
-#$Id: Prereq.pm,v 1.32 2007/01/10 04:53:14 comdog Exp $
+#$Id: Prereq.pm 2209 2007-03-17 05:47:05Z comdog $
 package Test::Prereq;
 use strict;
 
@@ -86,7 +86,8 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = sprintf "%d.%03d", q$Revision: 1.32 $ =~ /(\d+)\.(\d+)/;
+$VERSION = 1.033;
+#sprintf "%d.%03d", q$Revision: 2209 $ =~ /(\d+)\.(\d+)/;
 
 @EXPORT = qw( prereq_ok );
 

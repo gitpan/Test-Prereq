@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.16 2007/01/10 04:53:14 comdog Exp $
+# $Id: Makefile.PL 2211 2007-03-17 05:58:18Z comdog $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
@@ -7,6 +7,7 @@ WriteMakefile(
 	'NAME'            => 'Test::Prereq',
 	'VERSION_FROM'    => 'lib/Prereq.pm',
 	'LICENSE'   	  => 'perl',
+	'AUTHOR'          => 'brian d foy <bdfoy@cpan.org>',
 
 	'PREREQ_PM' => {
 		'Module::Build'         => '0',

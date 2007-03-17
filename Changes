@@ -1,4 +1,9 @@
-# $Id: Changes,v 1.23 2007/01/10 04:54:23 comdog Exp $
+# $Id: Changes 2212 2007-03-17 06:01:30Z comdog $
+
+1.33 - Fri Mar 16 23:00:57 2007
+	* Fixed load test to not complain when trying to import the same
+	symbol twice
+	* No code fixes otherwise. No need to upgrade.
 
 1.32 - Tue Jan  9 22:54:40 2007
 	* updated copyright and license info
