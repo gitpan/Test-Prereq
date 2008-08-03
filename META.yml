@@ -1,9 +1,11 @@
 --- #YAML:1.0
 name:                Test-Prereq
-version:             1.033
-abstract:            ~
+version:             1.034
+abstract:            check if Makefile.PL has the right pre-requisites
 license:             perl
-generated_by:        ExtUtils::MakeMaker version 6.31
+author:              
+    - brian d foy <bdfoy@cpan.org>
+generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     Module::Build:                 0
@@ -13,7 +15,5 @@ requires:
     Test::Builder::Tester:         0
     Test::More:                    0
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
-    version: 1.2
-author:
-    - brian d foy <bdfoy@cpan.org>
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

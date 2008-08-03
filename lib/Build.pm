@@ -1,9 +1,12 @@
-# $Id: Build.pm 2209 2007-03-17 05:47:05Z comdog $
+# $Id: Build.pm 2576 2008-07-13 02:29:49Z comdog $
 package Test::Prereq::Build;
 use strict;
 
 use base qw(Test::Prereq);
 use vars qw($VERSION @EXPORT);
+
+use warnings;
+no warnings;
 
 =head1 NAME
 
@@ -16,8 +19,7 @@ Test::Prereq::Build - test prerequisites in Module::Build scripts
 
 =cut
 
-$VERSION = 1.012;
-#sprintf "%d.%03d", q$Revision: 2209 $ =~ /(\d+)\.(\d+)/;
+$VERSION = 1.034;
 
 use Module::Build;
 use Test::Builder;
@@ -49,13 +51,13 @@ it under the same terms as Perl itself.
 
 sub import 
 	{
-    my $self   = shift;
-    my $caller = caller;
-    no strict 'refs';
-    *{$caller.'::prereq_ok'}       = \&prereq_ok;
-
-    $Test->exported_to($caller);
-    $Test->plan(@_);
+	my $self   = shift;
+	my $caller = caller;
+	no strict 'refs';
+	*{$caller.'::prereq_ok'}       = \&prereq_ok;
+	
+	$Test->exported_to($caller);
+	$Test->plan(@_);
 	}
 
 sub prereq_ok
