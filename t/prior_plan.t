@@ -1,4 +1,4 @@
-# $Id: prior_plan.t 1564 2005-03-08 05:16:57Z comdog $
+# $Id$
 
 use Test::More tests => 2;
 

@@ -1,4 +1,4 @@
-# $Id: load.t 2209 2007-03-17 05:47:05Z comdog $
+# $Id$
 BEGIN {
 	@classes = qw(Test::Prereq Test::Prereq::Build);
 	}

@@ -1,4 +1,4 @@
-# $Id: get_from_prereqs.t 1711 2005-12-26 04:02:35Z comdog $
+# $Id$
 use strict;
 
 use Test::Prereq;

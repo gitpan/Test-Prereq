@@ -1,4 +1,4 @@
-# $Id: get_prereqs.t 1154 2004-02-20 10:27:38Z comdog $
+# $Id$
 use strict;
 BEGIN{ $^W = 0; }
 
