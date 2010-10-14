@@ -1,4 +1,3 @@
-# $Id$
 package Test::Prereq::Build;
 use strict;
 
@@ -19,7 +18,7 @@ Test::Prereq::Build - test prerequisites in Module::Build scripts
 
 =cut
 
-$VERSION = '1.037';
+$VERSION = '1.037_02';
 
 use Module::Build;
 use Test::Builder;
@@ -28,12 +27,27 @@ my $Test = Test::Builder->new;
 
 =head1 METHODS
 
-If you have problems, send me your Build.PL.
+If you have problems, send me your F<Build.PL>.
 
-This module overrides methods in Test::Prereq to make it work with
-Module::Build.
+This module overrides methods in C<Test::Prereq> to make it work with
+C<Module::Build>.
 
-This module does not have any public methods.  See L<Test::Prereq>.
+This module does not have any public methods. See L<Test::Prereq>.
+
+To make everything work out with C<Module::Build>, this module overrides
+some methods to do nothing.
+
+=over 4
+
+=item create_build_script
+
+=item add_build_element
+
+=item args
+
+=item notes
+
+=back
 
 =head1 AUTHOR
 
@@ -41,7 +55,7 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2002-2009 brian d foy.  All rights reserved.
+Copyright (c) 2002-2010 brian d foy.  All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
@@ -78,6 +92,8 @@ sub Module::Build::new
 	my @requires = sort grep $_ ne 'perl', (
 		keys %{ $hash{requires} },
 		keys %{ $hash{build_requires} },
+		keys %{ $hash{configure_requires} },
+		keys %{ $hash{recommends} },
 		);
 
 	@Test::Prereq::prereqs = @requires;
@@ -88,5 +104,8 @@ sub Module::Build::new
 
 # fake Module::Build methods
 sub create_build_script { 1 };
+sub add_build_element { 1 };
+sub args { 1 };
+sub notes { 1 };
 
 1;

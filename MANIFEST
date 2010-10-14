@@ -1,10 +1,11 @@
+Build.PL
 Changes
 examples/README
 lib/Build.pm
 lib/Prereq.pm
 LICENSE
-Makefile.PL
 MANIFEST			This list of files
+META.yml
 README
 t/get_from_file.t
 t/get_from_prereqs.t
@@ -18,6 +19,5 @@ t/prereq_ok.t
 t/prior_plan.t
 t/test_manifest
 testdir/bad_makefile/Makefile.PL
-testdir/Build.PL
+testdir/Makefile.PL
 testdir/MANIFEST
-META.yml                                 Module meta-data (added by MakeMaker)
