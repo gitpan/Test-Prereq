@@ -1,10 +1,11 @@
-Build.PL
 Changes
 examples/README
-lib/Build.pm
-lib/Prereq.pm
+lib/Test/Prereq.pm
+lib/Test/Prereq/Build.pm
 LICENSE
+Makefile.PL
 MANIFEST			This list of files
+MANIFEST.SKIP
 META.yml
 README
 t/get_from_file.t
@@ -19,5 +20,7 @@ t/prereq_ok.t
 t/prior_plan.t
 t/test_manifest
 testdir/bad_makefile/Makefile.PL
-testdir/Makefile.PL
-testdir/MANIFEST
+testdir/build_pl/Build.PL
+testdir/good_makefile/Makefile.PL
+testdir/good_makefile/MANIFEST
+META.json                                Module JSON meta-data (added by MakeMaker)

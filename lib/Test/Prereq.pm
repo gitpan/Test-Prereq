@@ -5,6 +5,8 @@ use utf8;
 use warnings;
 no warnings;
 
+=encoding utf8
+
 =head1 NAME
 
 Test::Prereq - check if Makefile.PL has the right pre-requisites
@@ -105,7 +107,7 @@ use base qw(Exporter);
 use vars qw($VERSION $EXCLUDE_CPANPLUS @EXPORT @prereqs);
 
 
-$VERSION = '1.037_02';
+$VERSION = '1.038';
 
 @EXPORT = qw( prereq_ok );
 
@@ -484,7 +486,7 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT and LICENSE
 
-Copyright 2002-2010, brian d foy, All rights reserved
+Copyright 2002-2014, brian d foy, All rights reserved
 
 This software is available under the same terms as perl.
 
