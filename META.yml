@@ -2,9 +2,13 @@
 abstract: 'Ensure a build file lists all pre-requisites'
 author:
   - 'brian d foy <bdfoy@cpan.org>'
-build_requires: {}
+build_requires:
+  ExtUtils::MakeMaker: 6.64
+  Test::Builder: 0
+  Test::Builder::Tester: 0
+  Test::More: 0.95
 dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.62, CPAN::Meta::Converter version 2.112150'
+generated_by: 'ExtUtils::MakeMaker version 6.84, CPAN::Meta::Converter version 2.130880'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -14,6 +18,9 @@ no_index:
   directory:
     - t
     - inc
+requires:
+  Module::CoreList: 0
+  Module::Info: 0
 resources:
   repository: https://github.com/briandfoy/test-prereq
-version: 1.038
+version: 1.038_01
