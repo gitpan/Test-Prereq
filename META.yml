@@ -25,4 +25,4 @@ requires:
   Module::Info: 0
 resources:
   repository: https://github.com/briandfoy/test-prereq
-version: 1.038_04
+version: 1.038_05
